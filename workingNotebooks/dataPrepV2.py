@@ -35,6 +35,7 @@ Cleans data column by splitting it into smaller strings, converting those to flo
 i: Dataframe for single channel
 o: Processed dataframe, printouts of lengths before and after clipping for check, timestamp for each iteration
     '''
+    
     col = df['data'].apply(lambda x: list(map(float, x.split(','))))
     print(type(col), type(col.iloc[0]), type(col.iloc[0][0]))
 
@@ -45,7 +46,7 @@ o: Processed dataframe, printouts of lengths before and after clipping for check
     print(min(l))
 
     for i in range(len(col)):
-        col.iloc[i] = col.iloc[i][:257] # or 257?
+        col.iloc[i] = col.iloc[i][:256] # or 257?
 
     for i in range(len(col)):
         l = []
@@ -73,6 +74,7 @@ for x in dfs:
 # Add code column from any channel df
 dfTensor['code'] = occ1['code'].reset_index(drop=True)
 print(dfTensor.head())
+print(type(dfTensor), type(dfTensor.iloc[0]), type(dfTensor.iloc[0][0]))
 # Delete original dfs with this ugly stack of dels, garbage collect to conserve RAM
 del occ0
 del occ1
@@ -91,4 +93,4 @@ del parP8
 gc.collect()
 
 # Save resulting dataframe to csv
-dfTensor.to_csv('../data/dfTensor.csv', sep=',')
+dfTensor.to_csv('../data/dfTensor2.csv', sep=';', quoting=None)
