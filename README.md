@@ -15,6 +15,8 @@ This project aims to use some techniques from the field of data science to explo
 
 
 # INSTALLATION OF REQUIRED PACKAGES
+-----------------
+-----------------
 
 There are a few packages needed to run the code which can easily be installed with pip:
 
@@ -37,7 +39,6 @@ pip install -r requirements.txt
 ## Fast ICA
 
 ![Logo of the name of the algorithm from its project website from the University of Aalto, Finland ](https://research.ics.aalto.fi/ica/fastica/FastICA.gif)
-
 
 "Independent component analysis (ICA) is a statistical and computational technique for revealing hidden factors that underlie sets of random variables, measurements, or signals.
 
