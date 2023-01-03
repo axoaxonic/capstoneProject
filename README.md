@@ -14,6 +14,14 @@ Brain-Computer Interfaces (BCIs) can be extremely empowering for people with dis
 This project aims to use some techniques from the field of data science to explore the feasibility of classiying EEG signals captured by a low cost, dry electrode system such as the Emotiv EPOC+. The data used was collected over nearly two years, 2014-15 and is [curated and hosted by the subject of the readings, David Vivancos](http://mindbigdata.com/opendb/index.html). Although four different datasets using four different devices are available, for this project I decided to analyze the one with the most channels, especially since it was the only one with electrode channels on the occipital lobe, which is the \"visual cortex.\" Lower cost options are available, such using a development board or microcontroller (\\\\$5 - \\\\$50) with an amplifier such as [this one](https://biosignals.berndporr.me.uk/#build_your_own_bio-amplifier), with electrodes from any supplier, which can be only [a few dollars](https://www.alibaba.com/product-detail/Colorful-Reusable-Gold-Cup-Electrodes-Cable_1600592681920.html)
 
 
+# INSTALLATION OF REQUIRED PACKAGES
+
+There are a few packages needed to run the code which can easily be installed with pip:
+
+```
+pip install -r requirements.txt
+```
+
 # SIGNAL PREPROCESSING
 -----------------
 -----------------
@@ -43,10 +51,10 @@ ICA defines a generative model for the observed multivariate data, which is typi
 
 A big difficulty with this dataset is the multidimensional encoding of the input. In the 'Data' column, each row is an entire vector of length ~256. The order of these vectors matter, but preserving it while preserving the order of events is a challenge.
 
-![LaTeX rendered image of a 3 by 3 matrix with the letters a through i, the two columns on the right hand side are full of vectors, denoted by an arrow, but the left hand side column is all scalars](./images/Mu)
+![LaTeX rendered image of a 3 by 3 matrix with the letters a through i, the two columns on the right hand side are full of vectors, denoted by an arrow, but the left hand side column is all scalars](./images/MixedDimMat.png)
 
 Convolutional Neural Networks have been shown by Craik, et al, 2019, to have strong performance in EEG classification tasks. Here I implemented TensorFlow + Keras CNN model with three convolutional layers, three pooling layers, and three dense layers (one for output).
-![Summary of CNN output](./images/CNN)
+![Summary of CNN output](./images/Model0.png)
 
 The accuracy of this model, even after filtering, unfortunately stayed around .102
 
@@ -64,6 +72,12 @@ A simple SKLearn Support Vector Classifier did not have to handle a lot of data 
 - "Denoising Source Separation", Jaako Särelä & Harri Valpola, 2005, J. Machine Learning Res. 6, pp. 233-272, doi:10.5555/1046920.1058110
 
 - "Frequency Band and PCA Feature Comparison for EEG Signal Classification", I Wayan Pio Pratama, et al, 2021, Lontar Komputer Vol. 12 No. 1, doi:10.24843/LKJITI.2021.v12.i01.p01
+
+- "PIEEG: Turn a Raspberry Pi into a Brain-Computer-Interface to measure biosignals", Ildar Rakhmatulin & Sebastian Volkl, 2022, arxiv::2201.02228
+
+- "Progress in Brain Computer Interface: Challenges and Opportunities", Simanto Saha, et al, 2021, Front. Syst. Neurosci., doi:10.3389/fnsys.2021.578875
+
+- "Supply and demand analysis of the current and future US neurology workforce", Timothy M. Dall, et al, 2013, Neurology 81(5), doi:10.1212/WNL.0b013e318294b1cf
 
 - "Toward Direct Brain-Computer Communication", Jacques J. Vidal, 1973, Ann. Rev Biophysics & Bioengineering, Vol. 2, pp. 157-180, doi:10.1146/annurev.bb.02.060173.001105
 
@@ -86,13 +100,17 @@ A simple SKLearn Support Vector Classifier did not have to handle a lot of data 
 
 -------------------
 
+Note: data folder only hosted locally, as the data generated from this project from trying different methods ended up being about 36GB.
+If
+
 ```
-├── 
 ├── workingCode                 <- Jupyter Notebooks and .py files of all the work for this project, including dead-ends as well as standalone files for data prep, signal processing, and modeling
 ├── images                      <- Images used anywhere in the project (slides, notebooks, etc)
-├── .gitignore                  <- Rules to ignore by Github.
-├── README.md                   <- This file.
-└── index.ipynb			<- Jupyter Notebook containing exploration and analysis of our data.
+├── .gitignore                  <- Rules to ignore by Github
+├── index.ipynb			<- Jupyter Notebook containing exploration and analysis of our data
+├── requirements.txt 		<- Library packages for pip to install
+└── README.md                   <- This file
+
 ```
 
 
