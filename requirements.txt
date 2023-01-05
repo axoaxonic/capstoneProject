@@ -3,7 +3,7 @@ numpy
 scipy
 tensorflow
 gc
-time
+#time
 sklearn
 # meegkit
 # mne 
